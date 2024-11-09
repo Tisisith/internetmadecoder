@@ -1,0 +1,27 @@
+char = "#"
+print(f" {char*4}")
+print(char)
+print(char)
+print(char)
+print(f" {char*4}")
+print('\n')
+
+print(f" {char*4}")
+print(f'{char}   {char}')
+print(f'{char}   {char}')
+print(f'{char}   {char}')
+print(f" {char*4}")
+print('\n')
+
+print(f"{char*3}")
+print(f"{char}  {char}")
+print(f"{char}   {char}")
+print(f"{char}  {char}")
+print(f"{char*3}")
+
+print('\n')
+print(f"{char*5}")
+print(char)
+print(f" { char*4}")
+print(char)
+print(f"{ char*5}")
