@@ -18,4 +18,4 @@ g = e.split()
 print("".join([h[0].capitalize() for h in g]))
 
 f = input('Please enter one or more text')
-print(f'The length of the string is {len(f)}')
+print(f'The length of the string is {len(f)} ')
