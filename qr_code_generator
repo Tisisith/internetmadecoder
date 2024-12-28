@@ -1,0 +1,62 @@
+from tkinter import *
+import pyqrcode
+from PIL import ImageTk, Image
+
+root = Tk()
+root.title("QR Code Generator")
+
+def generate():
+    link_name = name_entry.get().strip()
+    link = link_entry.get().strip()
+    
+    if not link_name or not link:
+        error_label.config(text="Please enter both name and link.", fg="red")
+        return
+    
+    error_label.config(text="")  # Clear error message
+    file_name = link_name + ".png"
+    
+    # Generate and save the QR Code
+    url = pyqrcode.create(link)
+    url.png(file_name, scale=8)
+    
+    # Load and display the QR Code image
+    img = Image.open(file_name)
+    img = img.resize((200, 200))  # Resize for display
+    img = ImageTk.PhotoImage(img)
+    
+    image_label.config(image=img)
+    image_label.image = img
+
+canvas = Canvas(root, width=400, height=600)
+canvas.pack()
+
+# App Label
+app_label = Label(root, text="QR Code Generator", fg='blue', font=("Arial", 20))
+canvas.create_window(200, 50, window=app_label)
+
+# Name Label and Entry
+name_label = Label(root, text="Link Name:")
+canvas.create_window(100, 120, window=name_label)
+name_entry = Entry(root)
+canvas.create_window(250, 120, window=name_entry)
+
+# Link Label and Entry
+link_label = Label(root, text="Link:")
+canvas.create_window(100, 160, window=link_label)
+link_entry = Entry(root)
+canvas.create_window(250, 160, window=link_entry)
+
+# Generate Button
+button = Button(root, text="Generate QR Code", command=generate)
+canvas.create_window(200, 200, window=button)
+
+# Error Label
+error_label = Label(root, text="", fg="red")
+canvas.create_window(200, 240, window=error_label)
+
+# Image Label for QR Code
+image_label = Label(root)
+canvas.create_window(200, 400, window=image_label)
+
+root.mainloop()
